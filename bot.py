@@ -93,7 +93,7 @@ def handle_start_command(client, message):
 
             # Create an inline keyboard with the button for the shortened URL
             keyboard = InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Verify your account", url=shortened_url)]])
+                [[InlineKeyboardButton("Verify your token", url=shortened_url)]])
 
             # Send the message with the verification button
             sent_message = app.send_message(
