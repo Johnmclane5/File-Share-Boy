@@ -41,7 +41,6 @@ user_collection = db['users']  # Collection to store user tokens
 
 # Channel ID from environment variable
 channel_id = int(os.environ.get("CHANNEL_ID", "0"))
-group_id = int(os.environ.get("GROUP_ID", "0"))
 admin_id = int(os.environ.get("ADMIN_ID"))
 
 # Configure logging
@@ -153,10 +152,11 @@ def handle_search_command(client, message):
 
             if not buttons:
                 # No search results found, send a message to inform the user and the admin
-                app.send_message(
-                    message.chat.id, "No results found. The admin will be notified soon.")
-                app.send_message(
-                    admin_id, f"User @{message.from_user.username} with ID {user_id} searched for: {query}")
+                app.send_message(user_id, "No results found. The admin will be notified soon.")
+                if admin_username:
+                    app.send_message(admin_id, f"User @{message.from_user.username} with ID {user_id} searched for: {query}")
+                else:
+                    app.send_message(admin_id, f"User with ID {user_id} searched for: {query}")
             else:
                 # Create an inline keyboard with the buttons for user selection
                 keyboard = InlineKeyboardMarkup(buttons)
