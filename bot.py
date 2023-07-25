@@ -294,7 +294,7 @@ def handle_token_time_command(client, message):
                 app.send_message(
                     user_id, "Your token has expired. Please tap here 👉 /start to renew your token.")
             else:
-                minutes_remaining = int(time_remaining / 360)
+                minutes_remaining = int(time_remaining / 3600)
                 sent_message = app.send_message(
                     user_id, f"Your token will expire in {minutes_remaining} hours.")
 
