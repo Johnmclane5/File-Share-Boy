@@ -109,7 +109,7 @@ def handle_start_command(client, message):
 # Handler for the search command
 
 
-@app.on_message(filters.chat(group_id) & filters.command("search"))
+@app.on_message(filters.command("search"))
 def handle_search_command(client, message):
     user_id = message.from_user.id
     user_data = user_collection.find_one(
