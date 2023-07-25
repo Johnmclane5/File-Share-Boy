@@ -4,6 +4,4 @@ pymongo
 Pyrogram==2.0.106
 python-dotenv
 requests
-TgCrypto==1.2.5
-urllib3==2.0.4
-Werkzeug==2.3.6
+TgCrypto
