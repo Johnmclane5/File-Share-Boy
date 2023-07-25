@@ -155,7 +155,7 @@ def handle_search_command(client, message):
                 app.send_message(
                     message.chat.id, "No results found. The admin will be notified soon.")
                 app.send_message(
-                    admin_id, f"User with ID {user_id} searched for: {query}")
+                    admin_id, f"User @{message.from_user.username} with ID {user_id} searched for: {query}")
             else:
                 # Create an inline keyboard with the buttons for user selection
                 keyboard = InlineKeyboardMarkup(buttons)
