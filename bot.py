@@ -79,11 +79,11 @@ def handle_start_command(client, message):
             if verify_token(user_id, provided_token):
                 # The user is verified successfully
                 app.send_message(
-                    user_id, "You are verified successfully! Now you can use the search command in Group Now.")
+                    user_id, "You are verified successfully! Now you can use the /search command.")
             else:
                 # The provided token doesn't match the stored token
                 app.send_message(
-                    user_id, "Verification failed. Please click on the correct link to verify your account.")
+                    user_id, "Verification failed. Please click on the correct link to verify your token.")
         else:
             # Generate or update the user's token and send the verification link
             token = generate_or_update_token(user_id)
