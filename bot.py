@@ -257,6 +257,7 @@ def generate_or_update_token(user_id):
         user_collection.insert_one({
             'user_id': user_id,
             'token': token,
+            'username': username, 
             'status': 'not verified',
             'time': current_time  # Save the current timestamp for token refresh
         })
