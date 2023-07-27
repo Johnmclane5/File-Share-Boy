@@ -103,7 +103,7 @@ def handle_start_command(client, message):
             sent_message = app.send_message(
                 message.chat.id, "Welcome! To 🗄File-Share-Boy👦, Please verify✅ your token:", reply_markup=keyboard)
             app.send_message(
-                admin_id, f"User @{message.from_user.username} with ID {user_id} JOINED")
+                admin_id, f"User @{message.from_user.username} with ID {user_id} Joined")
 
             # Delete the sent message after 60 seconds
             delete_message(user_id, sent_message)
@@ -299,7 +299,7 @@ def handle_token_time_command(client, message):
                 app.send_message(
                     user_id, "Your token has expired. Please tap here 👉 /start to renew your token.")
             else:
-                minutes_remaining = int(time_remaining / 3600)
+                minutes_remaining = float(time_remaining / 3600)
                 sent_message = app.send_message(
                     user_id, f"Your token will expire in {minutes_remaining} hours.")
 
