@@ -102,8 +102,8 @@ def handle_start_command(client, message):
             # Send the message with the verification button
             sent_message = app.send_message(
                 message.chat.id, "Welcome! To 🗄File-Share-Boy👦, Please verify✅ your token:", reply_markup=keyboard)
-                           app.send_message(
-                    admin_id, f"User @{message.from_user.username} with ID {user_id} JOINED")
+            app.send_message(
+                admin_id, f"User @{message.from_user.username} with ID {user_id} JOINED")
 
             # Delete the sent message after 60 seconds
             delete_message(user_id, sent_message)
