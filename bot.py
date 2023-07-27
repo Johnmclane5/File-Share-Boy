@@ -301,7 +301,7 @@ def handle_token_time_command(client, message):
             else:
                 minutes_remaining = float(time_remaining / 3600)
                 sent_message = app.send_message(
-                    user_id, f"Your token will expire in {minutes_remaining} hours.")
+                    user_id, f"Your token will expire in {minutes_remaining:.1f} hours.")
 
                 # Delete the sent message after 60 seconds
                 delete_message(user_id, sent_message)
