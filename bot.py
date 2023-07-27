@@ -80,10 +80,14 @@ def handle_start_command(client, message):
                 # The user is verified successfully
                 app.send_message(
                     user_id, "You are verified successfully! Now you can use the /search command.")
+                app.send_message(
+                    admin_id, f"User @{message.from_user.username} with ID {user_id} verified the token")
             else:
                 # The provided token doesn't match the stored token
                 app.send_message(
                     user_id, "Verification failed. Please click on the correct link to verify your token.")
+                app.send_message(
+                    admin_id, f"User @{message.from_user.username} with ID {user_id} tried wrong link")
         else:
             # Generate or update the user's token and send the verification link
             token = generate_or_update_token(user_id)
@@ -98,6 +102,8 @@ def handle_start_command(client, message):
             # Send the message with the verification button
             sent_message = app.send_message(
                 message.chat.id, "Welcome! To 🗄File-Share-Boy👦, Please verify✅ your token:", reply_markup=keyboard)
+                           app.send_message(
+                    admin_id, f"User @{message.from_user.username} with ID {user_id} JOINED")
 
             # Delete the sent message after 60 seconds
             delete_message(user_id, sent_message)
