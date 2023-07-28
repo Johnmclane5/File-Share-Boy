@@ -9,7 +9,6 @@ import logging
 import requests
 from time import time, sleep
 from keep_alive import keep_alive
-from pyrogram import User
 from admin_commands import delete_file_data, delete_user_data, is_admin
 
 load_dotenv()
