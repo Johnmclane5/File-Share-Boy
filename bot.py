@@ -314,7 +314,7 @@ def handle_token_time_command(client, message):
             f"Error while processing the token_time_remaining command: {e}")
         
 # Handler for the /delete_userid command (accessible by admin only)
-@app.on_message(filters.command("delete_userid") & filters.create(is_admin, admin_id))
+@app.on_message(filters.command("delete_userid") & filters.user(admin_id))
 def handle_delete_userid_command(client, message):
     try:
         if len(message.command) < 2:
@@ -334,7 +334,7 @@ def handle_delete_userid_command(client, message):
             message.chat.id, f"Error while deleting user: {e}")
 
 # Handler for the /delete_file_id command (accessible by admin only)
-@app.on_message(filters.command("delete_file_id") & filters.create(is_admin, admin_id))
+@app.on_message(filters.command("delete_file_id") & filters.user(admin_id))
 def handle_delete_file_id_command(client, message):
     try:
         if len(message.command) < 2:
