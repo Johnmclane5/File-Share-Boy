@@ -3,7 +3,7 @@ from uuid import uuid4
 import requests
 from time import time, sleep
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram import filters, Client, User
+from pyrogram import Client, filters
 
 # Telegram bot credentials
 api_id = int(os.environ.get('API_ID'))
@@ -28,10 +28,6 @@ user_collection = db['users']  # Collection to store user tokens
 
 # Admin ID from environment variable
 admin_id = int(os.environ.get("ADMIN_ID"))
-
-# Define the function to check if a user is the admin
-def is_admin(user: User, admin_id):
-    return user.id == admin_id
 
 # Function to delete specific file data from the database
 def delete_file_data(file_id):
