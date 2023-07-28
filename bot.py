@@ -9,7 +9,6 @@ import logging
 import requests
 from time import time, sleep
 from keep_alive import keep_alive
-from admin_commands import delete_file_data, delete_user_data, is_admin
 
 load_dotenv()
 
@@ -353,6 +352,24 @@ def handle_delete_file_id_command(client, message):
         app.send_message(
             message.chat.id, f"Error while deleting file data: {e}")
 
+
+# Function to delete specific file data from the database
+def delete_file_data(file_id):
+    try:
+        # Find and delete the file data from the collection based on the file_id
+        collection.delete_one({'file_id': file_id})
+        print(f"File data with file_id: {file_id} deleted from the database.")
+    except Exception as e:
+        print(f"Error while deleting file data: {e}")
+
+# Function to delete a user from the database
+def delete_user_data(user_id):
+    try:
+        # Find and delete the user data from the user_collection based on the user_id
+        user_collection.delete_one({'user_id': user_id})
+        print(f"User data with user_id: {user_id} deleted from the database.")
+    except Exception as e:
+        print(f"Error while deleting user data: {e}")
 
 # Run the bot
 if __name__ == "__main__":
