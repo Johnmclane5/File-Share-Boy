@@ -345,32 +345,32 @@ def handle_delete_userid_command(client, message):
             message.chat.id, f"Error while deleting user: {e}")
 
 # Handler for the /delete_file_id command (accessible by admin only)
-@app.on_message(filters.command("delete_file_id") & filters.user(admin_id))
-def handle_delete_file_id_command(client, message):
+@app.on_message(filters.command("delete_file") & filters.user(admin_id))
+def handle_delete_file_data_command(client, message):
     try:
         if len(message.command) < 2:
             app.send_message(
-                message.chat.id, "Please provide a file ID to delete.")
+                message.chat.id, "Please provide a file caption to delete.")
             return
 
-        file_id_to_delete = message.command[1]
+        file_caption_to_delete = message.command[1]
 
         # Delete the file data from the database
-        delete_file_data(file_id_to_delete)
+        delete_file_data(file_caption_to_delete)
 
         app.send_message(
-            message.chat.id, f"File data with ID {file_id_to_delete} has been deleted from the database.")
+            message.chat.id, f"File data with caption {file_caption_to_delete} has been deleted from the database.")
     except Exception as e:
         app.send_message(
             message.chat.id, f"Error while deleting file data: {e}")
 
 
 # Function to delete specific file data from the database
-def delete_file_data(file_id):
+def delete_file_data(file_caption):
     try:
         # Find and delete the file data from the collection based on the file_id
-        collection.delete_one({'file_id': file_id})
-        print(f"File data with file_id: {file_id} deleted from the database.")
+        collection.delete_one({'caption': file_caption})
+        print(f"File data with caption: {file_caption} deleted from the database.")
     except Exception as e:
         print(f"Error while deleting file data: {e}")
 
