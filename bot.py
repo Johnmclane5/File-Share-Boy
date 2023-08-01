@@ -191,9 +191,17 @@ def handle_callback(client, callback_query):
     file_id = file_ids.get(unique_id)
 
     if file_id:
-        # Handle the button click here (e.g., send the file corresponding to the file_id)
-        app.send_document(callback_query.from_user.id, file_id,
-                          caption="Here's the file you requested.")
+        # Retrieve the caption from the database using the file_id
+        file_data = collection.find_one({'file_id': file_id})
+        if file_data and 'caption' in file_data:
+            file_caption = file_data['caption']
+            file_caption = f"`{file_caption}`"
+        else:
+            # If the caption is not found in the database, set a default caption
+            file_caption = "Here's the file you requested."
+
+        # Send the document with the retrieved caption
+        app.send_document(callback_query.from_user.id, file_id, caption=file_caption)
     else:
         # In case something goes wrong or the file_id is not found
         app.answer_callback_query(callback_query.id, text="File not found.")
