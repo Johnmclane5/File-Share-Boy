@@ -202,12 +202,12 @@ def handle_callback(client, callback_query):
 
         # Send the document with the retrieved caption
         sent_message = app.send_document(callback_query.from_user.id, file_id, caption=file_caption)
+
+        delete_message(callback_query.from_user.id, sent_message.message_id)
     else:
         # In case something goes wrong or the file_id is not found
         app.answer_callback_query(callback_query.id, text="File not found.")
         
-    delete_message(message.chat.id, sent_message)
-
 # Define a message handler to fetch files from the channel and store in MongoDB
 
 
