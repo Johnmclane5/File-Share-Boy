@@ -203,7 +203,7 @@ def handle_callback(client, callback_query):
         # Send the document with the retrieved caption
         sent_message = app.send_document(callback_query.from_user.id, file_id, caption=file_caption)
 
-        delete_message(message.chat.id, sent_message)
+        delete_message(callback_query.chat.id, sent_message)
     else:
         # In case something goes wrong or the file_id is not found
         app.answer_callback_query(callback_query.id, text="File not found.")
