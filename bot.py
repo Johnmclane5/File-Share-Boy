@@ -178,7 +178,7 @@ def handle_search_command(client, message):
                 # Delete the sent message after 60 seconds
                 delete_message(message.chat.id, sent_message)
     else:
-        # User is not verified, send a message asking them to verify their account
+        # User is not verified,  a message asking them to verify their account
         app.send_message(
             message.chat.id, "You need to verify your token🎟 first. Please tap here 👉 /start to verify your token🎟.")
 
@@ -201,10 +201,12 @@ def handle_callback(client, callback_query):
             file_caption = "Here's the file you requested."
 
         # Send the document with the retrieved caption
-        app.send_document(callback_query.from_user.id, file_id, caption=file_caption)
+        sent_message = app.send_document(callback_query.from_user.id, file_id, caption=file_caption)
     else:
         # In case something goes wrong or the file_id is not found
         app.answer_callback_query(callback_query.id, text="File not found.")
+        
+    delete_message(message.chat.id, sent_message)
 
 # Define a message handler to fetch files from the channel and store in MongoDB
 
