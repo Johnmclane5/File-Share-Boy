@@ -1,7 +1,7 @@
 dnspython
 Flask
 pymongo
-Pyrogram==2.0.106
+Pyrofork
 python-dotenv
 requests
 TgCrypto
