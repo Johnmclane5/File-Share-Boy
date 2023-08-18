@@ -355,13 +355,17 @@ def handle_delete_file_data_command(client, message):
                 message.chat.id, "Please provide a file caption to delete.")
             return
 
-        file_caption_to_delete = message.command[1]
+        file_caption_to_delete = " ".join(message.command[1:])
 
-        # Delete the file data from the database
-        delete_file_data(file_caption_to_delete)
+        # Delete the file data from the database and get the deletion result
+        delete_result = delete_file_data(file_caption_to_delete)
 
-        app.send_message(
-            message.chat.id, f"File data with caption {file_caption_to_delete} has been deleted from the database.")
+        if delete_result == "deleted":
+            app.send_message(
+                message.chat.id, f"File data with caption '{file_caption_to_delete}' has been deleted from the database.")
+        elif delete_result == "not_found":
+            app.send_message(
+                message.chat.id, f"No file data found with caption '{file_caption_to_delete}'.")
     except Exception as e:
         app.send_message(
             message.chat.id, f"Error while deleting file data: {e}")
@@ -378,8 +382,10 @@ def delete_file_data(file_caption):
 
         if result.deleted_count == 1:
             print(f"File data with caption: '{file_caption}' deleted from the database.")
+            return "deleted"  # File data was found and deleted
         else:
             print(f"No file data found with caption: '{file_caption}'")
+            return "not_found"  # File data was not found for deletion
 
     except ValueError as ve:
         print(f"Error: {ve}")
