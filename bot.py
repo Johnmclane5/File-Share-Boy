@@ -370,9 +370,19 @@ def handle_delete_file_data_command(client, message):
 # Function to delete specific file data from the database
 def delete_file_data(file_caption):
     try:
-        # Find and delete the file data from the collection based on the file_id
-        collection.delete_one({'caption': file_caption})
-        print(f"File data with caption: {file_caption} deleted from the database.")
+        if not file_caption:
+            raise ValueError("File caption cannot be empty")
+
+        # Find and delete the file data from the collection based on the file_caption
+        result = collection.delete_one({'caption': file_caption})
+
+        if result.deleted_count == 1:
+            print(f"File data with caption: '{file_caption}' deleted from the database.")
+        else:
+            print(f"No file data found with caption: '{file_caption}'")
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
     except Exception as e:
         print(f"Error while deleting file data: {e}")
 
