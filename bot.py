@@ -138,8 +138,8 @@ def handle_search_command(client, message):
                     message.chat.id, "Please provide a search🔍 query along with the /search command.")
                 return
 
-            # User is verified and token is not expired, proceed with search
-            query = message.command[1]  # Extract the search query
+            # User is verified and token is not expired, proceed with search          
+            query = " ".join(message.command[1:]) # Extract the search query
             search_results = collection.find(
                 {'file_name': {'$regex': query, '$options': 'i'}})
 
