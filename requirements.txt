@@ -1,6 +1,6 @@
 dnspython
 Flask
-pymongo
+pymongo==4.3.3
 Pyrofork
 python-dotenv
 requests
