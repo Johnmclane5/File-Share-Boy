@@ -82,15 +82,15 @@ def handle_start_command(client, message):
             if verify_token(user_id, provided_token):
                 # The user is verified successfully
                 app.send_message(
-                    user_id, "You token verified successfully!✅ Now you can use the /search 🔍 command.")
+                    user_id, "Verification Successfully!✅ Now you can use the /search 🔍 command.")
                 app.send_message(
-                    admin_id, f"User🕵️‍♂️ {user_link} with 🆔 {user_id} verified the token🎟")
+                    log_channel_id, f"User🕵️‍♂️ {user_link} with 🆔 {user_id} verified the token🎟")
             else:
                 # The provided token doesn't match the stored token
                 app.send_message(
-                    user_id, "Token Verification failed❌. Please click on the correct link to verify your token🎟.")
+                    user_id, "Verification failed❌. Please click on the correct link to verify your token🎟.")
                 app.send_message(
-                    admin_id, f"User {user_link} with 🆔 {user_id} tried wrong link")
+                    log_channel_id, f"User {user_link} with 🆔 {user_id} tried wrong link")
         else:
             # Generate or update the user's token and send the verification link
             token = generate_or_update_token(user_id)
@@ -100,11 +100,11 @@ def handle_start_command(client, message):
 
             # Create an inline keyboard with the button for the shortened URL
             keyboard = InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Verify your token", url=shortened_url)]])
+                [[InlineKeyboardButton("Get Verified", url=shortened_url)]])
 
             # Send the message with the verification button
             sent_message = app.send_message(
-                message.chat.id, "Welcome! To 🗄File-Share-Boy👦, Please verify✅ your token🎟:", reply_markup=keyboard)
+                message.chat.id, "Welcome! to 🗄HEVC RIPS File-Share👦 Get Unlimited Files Access For 24hrs After Verification✅:", reply_markup=keyboard)
             app.send_message(
                 log_channel_id, f"User {user_link} with ID {user_id} Joined")
 
@@ -131,12 +131,12 @@ def handle_search_command(client, message):
         if current_time > token_expiration_time:
             # Token is expired, send a message asking the user to renew their token
             app.send_message(
-                message.chat.id, "Your token🎟 has expired. Please tap here 👉 /start to renew your token🎟.")
+                message.chat.id, "Session expired. Renew /start")
         else:
             # Check if a search query was provided
             if len(message.command) < 2:
                 app.send_message(
-                    message.chat.id, "Please provide a search🔍 query along with the /search command.")
+                    message.chat.id, "Provide a search🔍 Query e.g /search loki")
                 return
 
             # User is verified and token is not expired, proceed with search          
@@ -163,9 +163,9 @@ def handle_search_command(client, message):
             if not buttons:
                 # No search results found, send a message to inform the user and the admin
                 app.send_message(
-                    message.chat.id, "No results found📭. The 🕵️‍♂️Admin will be notified soon.")
+                    message.chat.id, "No results found📭. The 🕵️‍♂️Admin is notified File will be added soon.")
                 app.send_message(
-                    admin_id, f"User🕵️‍♂️ {user_link} with 🆔 {user_id} searched for: {query}")
+                    log_channel_id, f"User🕵️‍♂️ {user_link} with 🆔 {user_id} searched for: {query}")
             else:
                 # Create an inline keyboard with the buttons for user selection
                 keyboard = InlineKeyboardMarkup(buttons)
@@ -181,7 +181,7 @@ def handle_search_command(client, message):
     else:
         # User is not verified,  a message asking them to verify their account
         app.send_message(
-            message.chat.id, "You need to verify your token🎟 first. Please tap here 👉 /start to verify your token🎟.")
+            message.chat.id, "You need to get verified first. Get Verified 👉 /start ")
 
 # Handler for button clicks
 
@@ -311,7 +311,7 @@ def handle_token_time_command(client, message):
 
             if time_remaining <= 0:
                 app.send_message(
-                    user_id, "Your token🎟 has expired. Please tap here 👉 /start to renew your token🎟.")
+                    user_id, "Your session has expired. Please tap here 👉 /start")
             else:
                 minutes_remaining = float(time_remaining / 3600)
                 sent_message = app.send_message(
@@ -321,7 +321,7 @@ def handle_token_time_command(client, message):
                 delete_message(user_id, sent_message)
         else:
             app.send_message(
-                user_id, "You token🎟 not verified. Please tap here 👉 /start to verify your token🎟.")
+                user_id, "You need to get verified first. Get Verified 👉 /start")
 
     except Exception as e:
         logger.error(
