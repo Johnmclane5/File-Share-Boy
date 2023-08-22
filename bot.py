@@ -43,6 +43,7 @@ user_collection = db['users']  # Collection to store user tokens
 # Channel ID from environment variable
 channel_id = int(os.environ.get("CHANNEL_ID", "0"))
 admin_id = int(os.environ.get("ADMIN_ID"))
+log_channel_id = int(os.environ.get("LOG_CHANNEL_ID", "0"))
 
 # Configure logging
 logging.basicConfig(
@@ -105,7 +106,7 @@ def handle_start_command(client, message):
             sent_message = app.send_message(
                 message.chat.id, "Welcome! To 🗄File-Share-Boy👦, Please verify✅ your token🎟:", reply_markup=keyboard)
             app.send_message(
-                admin_id, f"User {user_link} with ID {user_id} Joined")
+                message.chat.id=log_channel_id, f"User {user_link} with ID {user_id} Joined")
 
             # Delete the sent message after 60 seconds
             delete_message(user_id, sent_message)
