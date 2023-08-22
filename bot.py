@@ -106,7 +106,7 @@ def handle_start_command(client, message):
             sent_message = app.send_message(
                 message.chat.id, "Welcome! To 🗄File-Share-Boy👦, Please verify✅ your token🎟:", reply_markup=keyboard)
             app.send_message(
-                message.chat.id=log_channel_id, f"User {user_link} with ID {user_id} Joined")
+                chat_id=log_channel_id, f"User {user_link} with ID {user_id} Joined")
 
             # Delete the sent message after 60 seconds
             delete_message(user_id, sent_message)
