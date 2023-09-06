@@ -4,7 +4,7 @@
   "repository": "https://github.com/Johnmclane5/File-Share-Boy",
   "keywords": ["telegram", "bot"],
   "env": {
-    "API_ID": "YOUR_API_ID"
+    "CONFIG_FILE_URL": "CONFIG_FILE_URL"
   },
   "buildpacks": [
     {
