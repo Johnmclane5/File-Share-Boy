@@ -1,7 +1,8 @@
 dnspython
 Flask
 pymongo==4.3.3
-Pyrofork
+pyrofork==2.2.10
 python-dotenv
 requests
 TgCrypto
+pyshorteners
