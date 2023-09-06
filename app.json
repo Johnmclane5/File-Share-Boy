@@ -1,28 +1,25 @@
 {
-    "name": "HR Rips",
-    "description": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
-    "stack": "container",
-    "keywords": [
-      "telegram",
-      "search",
-      "index",
-    ],
-    "website": "",
-    "repository": "https://github.com/Johnmclane5/File-Share-Boyr",
-    "env": {
-        "CONFIG_FILE_URL": {
-            "description": "Your bot token.",
-            "required": true
-        }
-    },
-    "addons": [],
-    "buildpacks": [{
-        "url": "heroku/python"
-    }],
-    "formation": {
-        "worker": {
-            "quantity": 1,
-            "size": "basic"
-        }
+  "name": "hrrips",
+  "description": "Description of your Telegram bot",
+  "repository": "https://github.com/Johnmclane5/File-Share-Boy",
+  "keywords": ["telegram", "bot"],
+  "env": {
+    "API_ID": "YOUR_API_ID",
+    "API_HASH": "YOUR_API_HASH",
+    "BOT_TOKEN": "YOUR_BOT_TOKEN",
+    "URL_SHORTENER_API_KEY": "YOUR_URL_SHORTENER_API_KEY",
+    "MONGODB_URI": "YOUR_MONGODB_URI",
+    "CHANNEL_ID": "YOUR_CHANNEL_ID",
+    "ADMIN_ID": "YOUR_ADMIN_ID",
+    "LOG_CHANNEL_ID": "YOUR_LOG_CHANNEL_ID"
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
     }
+  ],
+  "scripts": {
+    "start": "python bot.py"
+  },
+  "image": "heroku/python"
 }
