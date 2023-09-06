@@ -4,14 +4,7 @@
   "repository": "https://github.com/Johnmclane5/File-Share-Boy",
   "keywords": ["telegram", "bot"],
   "env": {
-    "API_ID": "YOUR_API_ID",
-    "API_HASH": "YOUR_API_HASH",
-    "BOT_TOKEN": "YOUR_BOT_TOKEN",
-    "URL_SHORTENER_API_KEY": "YOUR_URL_SHORTENER_API_KEY",
-    "MONGODB_URI": "YOUR_MONGODB_URI",
-    "CHANNEL_ID": "YOUR_CHANNEL_ID",
-    "ADMIN_ID": "YOUR_ADMIN_ID",
-    "LOG_CHANNEL_ID": "YOUR_LOG_CHANNEL_ID"
+    "API_ID": "YOUR_API_ID"
   },
   "buildpacks": [
     {
@@ -19,7 +12,7 @@
     }
   ],
   "scripts": {
-    "start": "python bot.py"
+    "start": "python get_config.py && python bot.py"
   },
   "image": "heroku/python"
 }
