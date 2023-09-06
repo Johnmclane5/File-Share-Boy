@@ -1,7 +1,7 @@
 import os
 import pyshorteners
 import uuid
-from pyrogram import Client, filters, LOGGER
+from pyrogram import Client, filters
 from pymongo import MongoClient
 from uuid import uuid4
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
