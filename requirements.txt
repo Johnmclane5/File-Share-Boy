@@ -5,4 +5,5 @@ pyrofork
 python-dotenv
 requests
 TgCrypto
+pyshorteners
 
