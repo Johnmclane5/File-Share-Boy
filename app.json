@@ -1,0 +1,28 @@
+{
+    "name": "HR Rips",
+    "description": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
+    "stack": "container",
+    "keywords": [
+      "telegram",
+      "search",
+      "index",
+    ],
+    "website": "",
+    "repository": "https://github.com/Johnmclane5/File-Share-Boyr",
+    "env": {
+        "CONFIG_FILE_URL": {
+            "description": "Your bot token.",
+            "required": true
+        }
+    },
+    "addons": [],
+    "buildpacks": [{
+        "url": "heroku/python"
+    }],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "basic"
+        }
+    }
+}
