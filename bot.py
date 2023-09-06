@@ -1,6 +1,7 @@
 import os
+import pyshorteners
 import uuid
-from pyrogram import Client, filters
+from pyrogram import Client, filters, LOGGER
 from pymongo import MongoClient
 from uuid import uuid4
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -96,7 +97,7 @@ def handle_start_command(client, message):
             token = generate_or_update_token(user_id)
             bot_username = app.get_me().username
             url_to_shorten = f'https://telegram.me/{bot_username}?start={token}'
-            shortened_url = shorten_url(url_to_shorten)
+            shortened_url = tiny(shorten_url(url_to_shorten))
 
             # Create an inline keyboard with the button for the shortened URL
             keyboard = InlineKeyboardMarkup(
@@ -250,6 +251,16 @@ def shorten_url(url):
     except Exception as e:
         logger.error(f"URL shortening failed: {e}")
         return url
+    
+async def tiny(long_url):
+    s = pyshorteners.Shortener()
+    try:
+        short_url = s.tinyurl.short(long_url)
+        logger.error(f'tinyfied {long_url} to {short_url}')
+        return short_url
+    except Exception:
+        logger.error(f'Failed to shorten URL: {long_url}')
+        return long_url
 
 # Generate a random token and save it to the database for a new user or update existing user's token
 
