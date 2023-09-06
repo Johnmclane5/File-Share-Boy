@@ -1,5 +1,6 @@
 import os
 import uuid
+from pyshorteners import Shortener
 from pyrogram import Client, filters
 from pymongo import MongoClient
 from uuid import uuid4
@@ -11,6 +12,9 @@ import requests
 from time import time, sleep
 from keep_alive import keep_alive
 from pyrogram.types import User
+
+
+tinyurl = Shortener('Tinyurl')
 
 
 load_dotenv()
@@ -97,7 +101,7 @@ def handle_start_command(client, message):
             token = generate_or_update_token(user_id)
             bot_username = app.get_me().username
             url_to_shorten = f'https://telegram.me/{bot_username}?start={token}'
-            shortened_url = shorten_url(url_to_shorten)
+            shortened_url = tinyurl.short(shorten_url(url_to_shorten))
 
             # Create an inline keyboard with the button for the shortened URL
             keyboard = InlineKeyboardMarkup(
