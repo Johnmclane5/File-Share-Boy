@@ -1,6 +1,7 @@
 import os
 import pyshorteners
 import uuid
+from app import LOGGER
 from pyrogram import Client, filters
 from pymongo import MongoClient
 from uuid import uuid4
@@ -256,10 +257,10 @@ async def tiny(long_url):
     s = pyshorteners.Shortener()
     try:
         short_url = s.tinyurl.short(long_url)
-        logger.error(f'tinyfied {long_url} to {short_url}')
+        LOGGER.info(f'tinyfied {long_url} to {short_url}')
         return short_url
     except Exception:
-        logger.error(f'Failed to shorten URL: {long_url}')
+        LOGGER.error(f'Failed to shorten URL: {long_url}')
         return long_url
 
 # Generate a random token and save it to the database for a new user or update existing user's token
