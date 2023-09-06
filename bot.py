@@ -1,5 +1,6 @@
 import os
 import pyshorteners
+from base64 import b64encode
 import uuid
 from pyrogram import Client, filters
 from pymongo import MongoClient
