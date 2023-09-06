@@ -6,4 +6,3 @@ python-dotenv
 requests
 TgCrypto
 pyshorteners
-base64
