@@ -216,7 +216,7 @@ def handle_callback(client, callback_query):
 # Define a message handler to fetch files from the channel and store in MongoDB
 
 
-@app.on_message(filters.chat(channel_id) & filters.document)
+@app.on_message(filters.chat(channel_id) & (filters.document | filters.video))
 def fetch_files(client, message):
     try:
         if message.document:
